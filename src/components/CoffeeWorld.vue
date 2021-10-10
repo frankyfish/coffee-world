@@ -34,6 +34,7 @@ export default {
     };
   },
 };
+// L-Map Vue doc: https://vue2-leaflet.netlify.app/components/LMap.html#demo
 </script>
 
 <style>
