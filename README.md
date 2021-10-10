@@ -1,4 +1,10 @@
 # coffee-world
+## Leaflet
+For dependencies issue with Leaflet: 
+```
+npm install --save @vue-leaflet/vue-leaflet leaflet
+npm i --save-dev vue-loader-v16
+```
 
 ## Project setup
 ```
