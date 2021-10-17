@@ -1,19 +1,17 @@
 <template>
-<div class="world">
+  <div class="world">
     <l-map 
-      :zoom="zoom" 
-      :center="center"
-      :bounds="bounds" 
-      style="height: 800px; width: 900px">
+      :zoom="zoom">
       
       <l-tile-layer
        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
        layer-type="base"
        name="OpenStreetMap"
+       :attribution="attribution"
       ></l-tile-layer>
     <!-- <l-marker :lat-lng="coordinates" draggable> </l-marker> -->
     </l-map>
-</div>
+  </div>
 </template>
 
 <script>
@@ -30,14 +28,17 @@ export default {
     return {
       zoom: 3,
       coordinates: [50, 50],
-      bounds: null
+
+      // tile-layer
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     };
   },
 };
 // L-Map Vue doc: https://vue2-leaflet.netlify.app/components/LMap.html#demo
 </script>
 
-<style>
+<style lang="scss">
 .world {
     width: 100%;
     height: 100%;
