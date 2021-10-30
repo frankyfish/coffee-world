@@ -4,9 +4,12 @@
         :zoom="zoom"
         @click="createMarker">
 
-      <l-marker v-for="marker in markers" :key="marker"
-                :lat-lng="marker"
-                draggable></l-marker>
+      <l-marker
+          v-for="marker in markers" :key="marker"
+            :lat-lng="marker"
+            draggable>
+        <l-popup :lat-lng="marker">Hey!</l-popup>
+      </l-marker>
       <l-tile-layer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           layer-type="base"
@@ -18,7 +21,7 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker } from '@vue-leaflet/vue-leaflet';
+import { LMap, LTileLayer, LMarker, LPopup } from '@vue-leaflet/vue-leaflet';
 import "leaflet/dist/leaflet.css";
 import * as L from 'leaflet';
 
@@ -27,7 +30,8 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    LPopup
   },
   data() {
     return {
@@ -45,10 +49,10 @@ export default {
     // produces error in such case (because doesn't contain coordinates
     createMarker: function createMarker(event) {
       console.log(event.latlng)
-      // console.log(parseFloat(event.latlng.lat))
-      if (typeof event !== "undefined") {
+      if (typeof event !== "undefined"
+          && typeof event.latlng !== "undefined") { // filtering only suitable event type
         // not sure if parseFloat is actually needed
-        this.markers.push(L.latLng(parseFloat(event.latlng.lat), parseFloat(event.latlng.lng)))
+        this.markers.push(L.latLng(event.latlng.lat, event.latlng.lng))
       }
     }
   }
